@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -26,7 +27,13 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    
+    [self.activityIndicator startAnimating]; // *** //
+    // [self.acitvityIndicator stopAnimating];
+    
     [self fetchMovies];
+    
+    [self.activityIndicator stopAnimating];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
@@ -38,7 +45,7 @@
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { // TODO: look into what this means
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { // TODO: look into what this means; lines inside block are called once the network call is finished
            if (error != nil) {
                NSLog(@"%@", [error localizedDescription]);
            }
@@ -48,14 +55,14 @@
 //               NSLog(@"%@", dataDictionary);
                
                self.movies = dataDictionary[@"results"];
-               for (NSDictionary *movie in self.movies) {
+               /*for (NSDictionary *movie in self.movies) {
                    NSLog(@"%@", movie[@"title"]);
-               }
-               
-               [self.tableView reloadData];
+               }*/
+                              
+               [self.tableView reloadData]; // TODO: revisit in vids
            }
         [self.refreshControl endRefreshing];
-       }];
+       }]; // revisit in vids
     [task resume];
 }
 
@@ -79,6 +86,7 @@
     cell.posterView.image = nil;
     [cell.posterView setImageWithURL:posterURL];
     
+    [self.activityIndicator stopAnimating];
     return cell;
 }
 
