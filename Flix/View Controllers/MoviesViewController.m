@@ -27,7 +27,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    
     [self fetchMovies];
         
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -44,7 +43,21 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { // TODO: look into what this means; lines inside block are called once the network call is finished
            if (error != nil) {
-               NSLog(@"%@", [error localizedDescription]);
+//               NSLog(@"%@", [error localizedDescription]);
+
+               UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies" message:@"The internet connection appears to be offline" preferredStyle:UIAlertControllerStyleAlert];
+               
+               // create a retry action
+               UIAlertAction *retryAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                   // TODO: handle response here; doing nothing will dismiss the view
+                   [self fetchMovies]; // TODO: ensure this isn't problematic since fetchMovies is called multiple times in a row
+               }];
+               // add the retry action to the alert controller
+               [alert addAction:retryAction];
+               
+               [self presentViewController:alert animated:YES completion:^{
+                   // TODO: optional code for what happens after the alert controller has finished presenting
+               }];
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -60,7 +73,7 @@
                [self.activityIndicator stopAnimating];
            }
         [self.refreshControl endRefreshing];
-       }]; // revisit in vids
+       }]; // TODO: revisit in vids
     [task resume];
 }
 
