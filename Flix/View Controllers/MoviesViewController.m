@@ -28,9 +28,8 @@
     self.tableView.delegate = self;
     
     [self.activityIndicator startAnimating];
-//    NSLog(@"Is spinning: %s", [self.activityIndicator isAnimating] ? "true" : "false");
+    
     [self fetchMovies];
-//    [self.activityIndicator stopAnimating];
         
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
@@ -39,7 +38,6 @@
 }
 
 - (void)fetchMovies {
-//    [self.activityIndicator startAnimating]; // TODO: delete
     
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
@@ -52,8 +50,7 @@
                
                // create a retry action
                UIAlertAction *retryAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                   // TODO: handle response here; doing nothing will dismiss the view
-                   [self fetchMovies]; // TODO: ensure this isn't problematic since fetchMovies is called multiple times in a row
+                   [self fetchMovies];
                }];
                // add the retry action to the alert controller
                [alert addAction:retryAction];
@@ -73,10 +70,10 @@
                }*/
                               
                [self.tableView reloadData]; // TODO: revisit in vids
-               [self.activityIndicator stopAnimating]; // TODO: delete
+               [self.activityIndicator stopAnimating];
+               [self.refreshControl endRefreshing]; // TODO: revisit in vids
            }
-        [self.refreshControl endRefreshing];
-       }]; // TODO: revisit in vids
+       }];
     [task resume];
 }
 
