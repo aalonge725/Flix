@@ -28,13 +28,8 @@
     self.tableView.delegate = self;
     
     
-    [self.activityIndicator startAnimating]; // *** //
-    // [self.acitvityIndicator stopAnimating];
-    
     [self fetchMovies];
-    
-    [self.activityIndicator stopAnimating];
-    
+        
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -42,6 +37,8 @@
 }
 
 - (void)fetchMovies {
+    [self.activityIndicator startAnimating];
+    
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -60,6 +57,7 @@
                }*/
                               
                [self.tableView reloadData]; // TODO: revisit in vids
+               [self.activityIndicator stopAnimating];
            }
         [self.refreshControl endRefreshing];
        }]; // revisit in vids
@@ -86,7 +84,6 @@
     cell.posterView.image = nil;
     [cell.posterView setImageWithURL:posterURL];
     
-    [self.activityIndicator stopAnimating];
     return cell;
 }
 
