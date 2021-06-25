@@ -173,7 +173,7 @@
             </objects>
             <point key="canvasLocation" x="-3" y="88"/>
         </scene>
-        <!--Movie Collection-->
+        <!--Movie Posters-->
         <scene sceneID="bWF-v3-Rzr">
             <objects>
                 <viewController id="4bn-oH-HWY" customClass="MoviesGridViewController" sceneMemberID="viewController">
@@ -216,7 +216,7 @@
                         <viewLayoutGuide key="safeArea" id="dMw-mr-5jN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Movie Collection" id="ow5-G7-AwX"/>
+                    <navigationItem key="navigationItem" title="Movie Posters" id="ow5-G7-AwX"/>
                     <connections>
                         <outlet property="collectionView" destination="Etx-kn-tYi" id="nZq-Li-0qU"/>
                     </connections>
