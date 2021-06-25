@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) NSArray *movies;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -36,10 +37,17 @@
     CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postersPerLine - 1)) / postersPerLine;
     CGFloat itemHeight = itemWidth * 1.5;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl setTintColor:[UIColor whiteColor]];
+    
+    [self.collectionView insertSubview:self.refreshControl atIndex:0];
 }
 
+
+
 - (void)fetchMovies {
-    
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -51,8 +59,7 @@
                
                // create a retry action
                UIAlertAction *retryAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                   // TODO: handle response here; doing nothing will dismiss the view
-                   [self fetchMovies]; // TODO: ensure this isn't problematic since fetchMovies is called multiple times in a row
+                   [self fetchMovies];
                }];
                // add the retry action to the alert controller
                [alert addAction:retryAction];
@@ -63,12 +70,17 @@
            }
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                              
+               
+//               NSLog(@"%@", dataDictionary);
+               
                self.movies = dataDictionary[@"results"];
+               /*for (NSDictionary *movie in self.movies) {
+                   NSLog(@"%@", movie[@"title"]);
+               }*/
                               
-               [self.collectionView reloadData];
+               [self.collectionView reloadData]; // TODO: revisit in vids
+               [self.refreshControl endRefreshing]; // TODO: revisit in vids
            }
-//        [self.refreshControl endRefreshing];
        }];
     [task resume];
 }
@@ -95,6 +107,9 @@
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
     cell.posterView.image = nil;
     [cell.posterView setImageWithURL:posterURL];
+    
+    cell.layer.cornerRadius = cell.frame.size.width/8;
+    cell.clipsToBounds = YES;
     
     return cell;
 }

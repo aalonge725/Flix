@@ -33,8 +33,9 @@
         
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl setTintColor:[UIColor whiteColor]];
+    
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-//    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)fetchMovies {
@@ -113,6 +114,7 @@
     DetailsViewController *detailViewController = [segue destinationViewController];
     detailViewController.movie = movie;
     
+    [tappedCell setSelected:NO];
 }
 
 @end
