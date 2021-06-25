@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Yr-xI-Qjo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tx3-Wg-5b4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -77,7 +78,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="715.94202898550725" y="93.75"/>
+            <point key="canvasLocation" x="-4" y="753"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Hjp-sD-2Mx">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fj1-SH-EjP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tabBarController id="tx3-Wg-5b4" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8rI-Hd-dT6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="5Yr-xI-Qjo" kind="relationship" relationship="viewControllers" id="0Xs-03-bvn"/>
+                        <segue destination="EBY-He-Hhc" kind="relationship" relationship="viewControllers" id="cJI-G7-Oh5"/>
+                    </connections>
+                </tabBarController>
+            </objects>
+            <point key="canvasLocation" x="714" y="-708"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="62B-20-b7b">
@@ -131,12 +150,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vaW-Zl-Riq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1428.985507246377" y="88.392857142857139"/>
+            <point key="canvasLocation" x="-4" y="1411"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Now Playing-->
         <scene sceneID="EdJ-m0-i3I">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Yr-xI-Qjo" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Now Playing" id="6eZ-sL-f44"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LwM-36-W4f">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -149,12 +169,85 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6V4-9G-36y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="93.75"/>
+            <point key="canvasLocation" x="-3" y="88"/>
+        </scene>
+        <!--Movies Grid View Controller-->
+        <scene sceneID="bWF-v3-Rzr">
+            <objects>
+                <viewController id="4bn-oH-HWY" customClass="MoviesGridViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2AQ-ix-8Hh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Etx-kn-tYi">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="8h4-Zh-YJy">
+                                    <size key="itemSize" width="170" height="226"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionCell" id="DEb-r2-j14" customClass="MovieCollectionCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="225"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="TWI-cB-BSJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="170" height="225"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rrm-a6-bAY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="170" height="225"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                                        <size key="customSize" width="170" height="225"/>
+                                        <connections>
+                                            <outlet property="posterView" destination="Rrm-a6-bAY" id="RIz-aX-qnI"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dMw-mr-5jN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ow5-G7-AwX"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Etx-kn-tYi" id="nZq-Li-0qU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRw-sL-87s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1398.5507246376812" y="752.67857142857144"/>
+        </scene>
+        <!--Movie Collection-->
+        <scene sceneID="Os8-5v-zhV">
+            <objects>
+                <navigationController id="EBY-He-Hhc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Movie Collection" id="EBs-tg-Ha1"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MgZ-Yn-m2c">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="4bn-oH-HWY" kind="relationship" relationship="rootViewController" id="TtB-HN-9nr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5nI-EH-N02" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1400" y="88"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
