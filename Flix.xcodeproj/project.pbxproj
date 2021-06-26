@@ -13,6 +13,7 @@
 		F648771E2685AE4D00184FDD /* MoviesGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F648771D2685AE4D00184FDD /* MoviesGridViewController.m */; };
 		F64877212686416800184FDD /* MovieCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F64877202686416800184FDD /* MovieCollectionCell.m */; };
 		F64877232686A61500184FDD /* ezgif.com-gif-maker (1).gif in Resources */ = {isa = PBXBuildFile; fileRef = F64877222686A61500184FDD /* ezgif.com-gif-maker (1).gif */; };
+		F64877252686D01A00184FDD /* ezgif.com-gif-maker.gif in Resources */ = {isa = PBXBuildFile; fileRef = F64877242686D01A00184FDD /* ezgif.com-gif-maker.gif */; };
 		F6F393CD268391DF002BCD4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F393CC268391DF002BCD4E /* AppDelegate.m */; };
 		F6F393D0268391DF002BCD4E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F393CF268391DF002BCD4E /* SceneDelegate.m */; };
 		F6F393D6268391DF002BCD4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6F393D4268391DF002BCD4E /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 		F648771F2686416800184FDD /* MovieCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCollectionCell.h; sourceTree = "<group>"; };
 		F64877202686416800184FDD /* MovieCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionCell.m; sourceTree = "<group>"; };
 		F64877222686A61500184FDD /* ezgif.com-gif-maker (1).gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "ezgif.com-gif-maker (1).gif"; path = "../../../../../Downloads/ezgif.com-gif-maker (1).gif"; sourceTree = "<group>"; };
+		F64877242686D01A00184FDD /* ezgif.com-gif-maker.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "ezgif.com-gif-maker.gif"; path = "../../../../../Downloads/ezgif.com-gif-maker.gif"; sourceTree = "<group>"; };
 		F6F393C8268391DF002BCD4E /* Flix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F393CB268391DF002BCD4E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F6F393CC268391DF002BCD4E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		F6F393CA268391DF002BCD4E /* Flix */ = {
 			isa = PBXGroup;
 			children = (
+				F64877242686D01A00184FDD /* ezgif.com-gif-maker.gif */,
 				F64877222686A61500184FDD /* ezgif.com-gif-maker (1).gif */,
 				F6F3940526839C53002BCD4E /* Models */,
 				F6F3940426839C4E002BCD4E /* Views */,
@@ -331,6 +334,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F64877252686D01A00184FDD /* ezgif.com-gif-maker.gif in Resources */,
 				F6F393DB268391E1002BCD4E /* LaunchScreen.storyboard in Resources */,
 				F6F393D8268391E1002BCD4E /* Assets.xcassets in Resources */,
 				F6F393D6268391DF002BCD4E /* Main.storyboard in Resources */,

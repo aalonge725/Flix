@@ -24,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.allowsMultipleSelection;
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -123,7 +125,6 @@
                                         // do something for the failure condition
                                     }];
     
-    
     return cell;
 }
 
@@ -140,7 +141,7 @@
     DetailsViewController *detailViewController = [segue destinationViewController];
     detailViewController.movie = movie;
     
-    [tappedCell setSelected:NO];
+    [self.tableView reloadData];
 }
 
 @end
