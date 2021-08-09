@@ -6,6 +6,7 @@
 //
 
 #import "MovieCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation MovieCell
 
@@ -18,6 +19,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)refreshData {
+    self.titleLabel.text = self.movie.title;
+    self.synopsisLabel.text = self.movie.synopsis;
+    [self.posterView setImageWithURL: self.movie.posterURL];
 }
 
 @end
